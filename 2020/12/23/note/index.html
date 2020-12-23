@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.79.1" />
+
+
+<title>note - A Hugo website</title>
+<meta property="og:title" content="note - A Hugo website">
+
+
+  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/rstudio/blogdown">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/rstudio">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">4 min read</span>
+    
+
+    <h1 class="article-title">note</h1>
+
+    
+    <span class="article-date">2020-12-23</span>
+    
+
+    <div class="article-content">
+      
+<script src="index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<pre class="r"><code>## 导入“aq.csv”数据表，命名为aq
+aq &lt;- read.csv(&quot;D:\\R project\\mydata\\aq.csv&quot;)
+## 对表中Temp这列画图
+plot(aq$Temp)</code></pre>
+<p><img src="index_files/figure-html/cars-1.png" width="672" /></p>
+<pre class="r"><code>## 表中Temp和Ozone画图
+plot(x = aq$Temp, y = aq$Ozone)</code></pre>
+<p><img src="index_files/figure-html/cars-2.png" width="672" /></p>
+<pre class="r"><code>## 表中Temp和Ozone画图，符号标记为18，颜色为蓝
+plot(x = aq$Temp, y = aq$Ozone, pch = 18, col = &quot;blue&quot;)</code></pre>
+<p><img src="index_files/figure-html/cars-3.png" width="672" /></p>
+<pre class="r"><code>## 表中Temp和Ozone画图，符号标记为18，颜色为66色号
+plot(x = aq$Temp, y = aq$Ozone, pch = 18, col = 66)</code></pre>
+<p><img src="index_files/figure-html/cars-4.png" width="672" /></p>
+<pre class="r"><code>#判断语句
+
+x &lt;- c(-1, 1, -3)
+## if-else 循环
+if (x &gt; 0) {
+  print(&quot;positive.&quot;)
+} else {
+  print(&quot;zero or negative.&quot;)
+}</code></pre>
+<pre><code>## Warning in if (x &gt; 0) {: the condition has length &gt; 1 and only the first element
+## will be used</code></pre>
+<pre><code>## [1] &quot;zero or negative.&quot;</code></pre>
+<pre class="r"><code>x &lt;--2
+if(x &gt; 0){
+  print(&quot;large&quot;)
+} else {
+  print(&quot;haha&quot;)
+}</code></pre>
+<pre><code>## [1] &quot;haha&quot;</code></pre>
+<pre class="r"><code>x &lt;- c(-1,1,-4)
+x1 &lt;- ifelse(x &gt; 0, &quot;positive&quot;, &quot;zero or negative&quot;)
+x1</code></pre>
+<pre><code>## [1] &quot;zero or negative&quot; &quot;positive&quot;         &quot;zero or negative&quot;</code></pre>
+<pre class="r"><code>## Temp &lt; 70时显示“小”，否则显示大。Ozone &gt; 100时显示红色，否则为蓝色
+plot(x = aq$Temp, y = aq$Ozone, 
+     pch = ifelse(aq$Temp &lt; 70, &quot;小&quot;, &quot;大&quot;), 
+     col = ifelse(aq$Ozone &gt; 100, &quot;red&quot;, &quot;blue&quot;),
+     cex = ifelse(aq$Solar.R &gt; 200, 2, 1))</code></pre>
+<p><img src="index_files/figure-html/cars-5.png" width="672" /></p>
+<pre class="r"><code>par(las = 1)
+plot(x = aq$Temp, y = aq$Ozone, type = &quot;h&quot;, 
+          xlab = &quot;Temperature&quot;, ylab = &quot;Ozone&quot;)</code></pre>
+<p><img src="index_files/figure-html/cars-6.png" width="672" /></p>
+<pre class="r"><code>## las = 1 表示与纵坐标轴垂直
+
+## type = “p” 表示绘制单独的点
+## type = “l” 表示绘制点连成的折线
+## type = “b” 表示有线连接的点
+## type = “o” 表示将点绘在线上
+## type = “h” 表示从点到x轴的垂线
+## type = “s” 表示阶梯式图
+## type = “n” 表示不绘制图
+
+
+
+
+# 读取张舒的数据，命名为“zs”
+zs &lt;- read.csv(&quot;D:\\R project\\mydata\\zs1.csv&quot;)
+
+## 以x和y1画图，type=l为点连接成的折线,lty=3为点虚线，xy轴分别命名为x、y。隐藏坐标轴，y轴为120~160.
+plot(zs$x, zs$y1, type = &quot;l&quot;, lty = 3, 
+     xlab = &quot;x&quot;, ylab = &quot;y&quot;, axes = FALSE,
+     ylim = c(120, 160))
+
+## x轴定义好大小为250, 500, 750, 1000, 1250, 1500，box()闭合
+axis(1, at = c(0, 250, 500, 750, 1000,1250, 1500), labels = c(0, 250, 500, 750, 1000, 1250, 1500))
+axis(2)
+axis(3)
+axis(4)
+box()
+
+## 添加曲线，x和y2的关系
+lines(x = zs$x, y = zs$y2, col = &quot;blue&quot;)
+
+## 添加图例，
+legend(&quot;topleft&quot;, lty = c(3, 1), col = c(&quot;black&quot;, &quot;blue&quot;), legend = c(&quot;y1&quot;, &quot;y2&quot;))
+legend(&quot;bottomright&quot;, legend = &quot;A&quot;)
+
+## abline 画线，y=(a+bx),画一条y=x的线
+abline(a = 0, b = 1)
+## h：平行于横坐标轴，相对于y; v垂直于横坐标，相当于x.
+abline(h = 140, col = &quot;red&quot;)
+abline(v = seq(0, 2000, by = 100), col = &quot;red&quot;, lty = 2)
+
+## 添加图表标题，
+text(x = 750, y = 150, labels = &quot;这是文字&quot;)
+
+## 画多边形
+polygon(x= c(200, 400, 600, 800), y = c(120, 150, 160, 140), col = &quot;green&quot;)</code></pre>
+<p><img src="index_files/figure-html/cars-7.png" width="672" /></p>
+<pre class="r"><code>## 多边形涂色， ## 数据表中第二第三列中的最大值下面部分涂为绿色，最小值下面部分涂为白色
+y &lt;- read.csv(&quot;D:\\R project\\mydata\\zs1.csv&quot;)
+y_green &lt;- c(0, apply(y[, 2:3], 1, max), 0)
+y_pink &lt;- c(0, y$y2, 0)
+y_white &lt;- c(0, apply(y[, 2:3], 1, min), 0)
+x &lt;- c(y$x[1], y$x, y$x[nrow(y)])
+
+plot(y$x, y$y2, type=&quot;n&quot;, ylim = c(120, 160), xlab = &quot;x&quot;, ylab = &quot;y&quot;)
+polygon(x = x, y = y_green, col = &quot;lightgreen&quot;, border = NA)
+polygon(x = x, y = y_pink, col = &quot;pink&quot;, border = NA)
+polygon(x = x, y = y_white, col = &quot;white&quot;, border = NA)
+lines(y$x, y$y2)
+lines(y$x, y$y1, lty = 2, col=&quot;blue1&quot;)
+box()</code></pre>
+<p><img src="index_files/figure-html/cars-8.png" width="672" /></p>
+<pre class="r"><code>#箱图
+boxplot(aq$Ozone ~ aq$Month, horizontal = TRUE, outline = FALSE)</code></pre>
+<p><img src="index_files/figure-html/cars-9.png" width="672" /></p>
+<pre class="r"><code>#aq$Month为分组依据
+#horizontal = TRUE 表示 横向显示
+#outline = FALSE  隐藏异常值
+
+boxplot(aq$Ozone ~ aq$Month, horizontal = TRUE, col = 1:5, outline = FALSE)</code></pre>
+<p><img src="index_files/figure-html/cars-10.png" width="672" /></p>
+<pre class="r"><code>#直方图
+hist(aq$Ozone,)</code></pre>
+<p><img src="index_files/figure-html/cars-11.png" width="672" /></p>
+<pre class="r"><code>hist(aq$Ozone, freq = FALSE)
+lines(density(na.omit(aq$Ozone)))</code></pre>
+<p><img src="index_files/figure-html/cars-12.png" width="672" /></p>
+<pre class="r"><code>#两组数据共享一个X轴，两个y轴
+plot(aq$Temp, aq$Ozone, pch = 16, col = &quot;blue&quot;, ylim = c(0, 200))
+par(new = TRUE)
+points(aq$Temp, aq$Solar.R, pch = 1, col = &quot;red&quot;, ylim = c(0, 400))</code></pre>
+<p><img src="index_files/figure-html/cars-13.png" width="672" /></p>
+<pre class="r"><code>plot(aq$Temp, aq$Ozone, pch = 16, col = &quot;blue&quot;, ylim = c(0, 200))
+par(new = TRUE)
+
+
+par(mfrow = c(2,4))
+for(i in 2:5){
+  plot(aq$Temp, aq[,1])
+}</code></pre>
+<p><img src="index_files/figure-html/cars-14.png" width="672" /></p>
+<pre class="r"><code># 两组数据共享一个X轴，两个y轴
+#mar函数为每个坐标轴离边缘的距离
+par(mar = c(4, 4, 1, 4))
+#绘图，隐藏坐标轴，主纵坐标为蓝色，次纵坐标为红色
+plot(aq$Temp, aq$Ozone, pch = 16, col = &quot;blue&quot;, ylim = c(0, 200), 
+     xlab = &quot;&quot;, ylab = &quot;&quot;, axes = FALSE)
+box()
+axis(1)
+axis(2, col = &quot;blue&quot;)
+mtext(text = &quot;Ozone&quot;, side = 2, las = 0, line = 3)
+#共用纵坐标
+par(new = TRUE)
+
+plot(aq$Temp, aq$Solar.R, pch = 1, col = &quot;red&quot;, ylim = c(0, 200), 
+     xlab = &quot;&quot;, ylab = &quot;&quot;, axes = FALSE)
+axis(4, col = &quot;red&quot;)
+mtext(text = &quot;Solar Radiation&quot;, side = 4, las = 0, line = 3)
+
+#图表分别，3行两列
+par(mfrow = c(3, 2))</code></pre>
+<p><img src="index_files/figure-html/cars-15.png" width="672" /></p>
+<pre class="r"><code>for (i in 2:5){
+  plot(aq$Temp, aq[, i])
+}</code></pre>
+<p><img src="index_files/figure-html/cars-16.png" width="672" /></p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+
